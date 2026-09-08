@@ -1,3 +1,6 @@
+
+
+Index · HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -96,7 +99,66 @@
     border: 1px solid #E5E7EB;
     padding: 6px 14px;
     border-radius: 999px;
+    margin-bottom: 36px;
   }
+  .demo {
+    width: 100%;
+    max-width: 480px;
+    background: #fff;
+    border: 1px solid #E5E7EB;
+    border-radius: 16px;
+    padding: 24px;
+    text-align: left;
+  }
+  .demo h2 {
+    font-size: 16px;
+    margin: 0 0 4px 0;
+    text-align: center;
+  }
+  .demo p.sub {
+    font-size: 13px;
+    color: #6B7280;
+    margin: 0 0 16px 0;
+    text-align: center;
+  }
+  .demo input, .demo textarea {
+    width: 100%;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 10px 12px;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    resize: vertical;
+  }
+  .demo button {
+    width: 100%;
+    background: var(--main);
+    color: #fff;
+    border: none;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 11px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .demo button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  .demo-result {
+    margin-top: 14px;
+    font-size: 13.5px;
+    line-height: 1.5;
+    padding: 12px;
+    border-radius: 8px;
+    background: #F3F4F6;
+    display: none;
+    white-space: pre-wrap;
+  }
+  .demo-result.show { display: block; }
+  .demo-result.error { background: #FEE2E2; color: #991B1B; }
 </style>
 </head>
 <body>
@@ -112,5 +174,66 @@
     <a href="https://calendly.com/muhammadarshankhan4/30min" target="_blank" rel="noopener">Book a Call</a>
   </div>
   <div class="status">Case study &amp; capstone work coming soon</div>
+ 
+  <div class="demo">
+    <h2>Try my support agent</h2>
+    <p class="sub">Send a real message &mdash; it goes to my live n8n agent and the response shows up below.</p>
+    <form id="demoForm">
+      <input type="text" id="demoName" placeholder="Your name" required>
+      <input type="email" id="demoEmail" placeholder="Your email" required>
+      <textarea id="demoMessage" rows="3" placeholder="Type a support message, e.g. 'My order hasn't arrived yet'" required></textarea>
+      <button type="submit" id="demoBtn">Send to the agent</button>
+    </form>
+    <div id="demoResult" class="demo-result"></div>
+  </div>
+ 
+  <script>
+    const WEBHOOK_URL = "https://arshankhancreative.app.n8n.cloud/webhook/a86004ab-0408-44f4-ada0-ba8a9148a5f3";
+    const form = document.getElementById('demoForm');
+    const btn = document.getElementById('demoBtn');
+    const result = document.getElementById('demoResult');
+ 
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const payload = {
+        name: document.getElementById('demoName').value,
+        email: document.getElementById('demoEmail').value,
+        message: document.getElementById('demoMessage').value
+      };
+ 
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      result.className = 'demo-result show';
+      result.textContent = 'Waiting for the agent...';
+ 
+      try {
+        const res = await fetch(WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) throw new Error('Agent responded with status ' + res.status);
+        const data = await res.json();
+        result.className = 'demo-result show';
+        result.textContent = typeof data === 'string' ? data : JSON.stringify(data, null, 2);
+      } catch (err) {
+        result.className = 'demo-result show error';
+        result.textContent = "Couldn't reach the agent right now (" + err.message + "). This usually means the webhook needs CORS enabled for browser requests \u2014 try again in a moment or reach out directly.";
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Send to the agent';
+      }
+    });
+  </script>
 </body>
 </html>
+ 
+
+
+
+
+
+
+
+
+
