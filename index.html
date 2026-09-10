@@ -1,6 +1,3 @@
-
-
-Index · HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -176,52 +173,46 @@ Index · HTML
   <div class="status">Case study &amp; capstone work coming soon</div>
  
   <div class="demo">
-    <h2>Try my support agent</h2>
-    <p class="sub">Send a real message &mdash; it goes to my live n8n agent and the response shows up below.</p>
-    <form id="demoForm">
-      <input type="text" id="demoName" placeholder="Your name" required>
-      <input type="email" id="demoEmail" placeholder="Your email" required>
-      <textarea id="demoMessage" rows="3" placeholder="Type a support message, e.g. 'My order hasn't arrived yet'" required></textarea>
-      <button type="submit" id="demoBtn">Send to the agent</button>
+    <h2>Get in touch</h2>
+    <p class="sub">Send me a real message &mdash; it goes straight to my inbox.</p>
+    <form id="demoForm" action="https://formspree.io/f/mdeopgzv" method="POST">
+      <input type="text" name="name" id="demoName" placeholder="Your name" required>
+      <input type="email" name="email" id="demoEmail" placeholder="Your email" required>
+      <textarea name="message" id="demoMessage" rows="3" placeholder="What would you like to say?" required></textarea>
+      <button type="submit" id="demoBtn">Send message</button>
     </form>
     <div id="demoResult" class="demo-result"></div>
   </div>
  
   <script>
-    const WEBHOOK_URL = "https://arshankhancreative.app.n8n.cloud/webhook/a86004ab-0408-44f4-ada0-ba8a9148a5f3";
     const form = document.getElementById('demoForm');
     const btn = document.getElementById('demoBtn');
     const result = document.getElementById('demoResult');
  
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
-      const payload = {
-        name: document.getElementById('demoName').value,
-        email: document.getElementById('demoEmail').value,
-        message: document.getElementById('demoMessage').value
-      };
- 
       btn.disabled = true;
       btn.textContent = 'Sending...';
-      result.className = 'demo-result show';
-      result.textContent = 'Waiting for the agent...';
  
       try {
-        const res = await fetch(WEBHOOK_URL, {
+        const res = await fetch(form.action, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
         });
-        if (!res.ok) throw new Error('Agent responded with status ' + res.status);
-        const data = await res.json();
-        result.className = 'demo-result show';
-        result.textContent = typeof data === 'string' ? data : JSON.stringify(data, null, 2);
+        if (res.ok) {
+          result.className = 'demo-result show';
+          result.textContent = "Sent \u2014 thanks! I'll get back to you soon.";
+          form.reset();
+        } else {
+          throw new Error('Form responded with status ' + res.status);
+        }
       } catch (err) {
         result.className = 'demo-result show error';
-        result.textContent = "Couldn't reach the agent right now (" + err.message + "). This usually means the webhook needs CORS enabled for browser requests \u2014 try again in a moment or reach out directly.";
+        result.textContent = "Something went wrong sending that (" + err.message + "). Try again or email me directly.";
       } finally {
         btn.disabled = false;
-        btn.textContent = 'Send to the agent';
+        btn.textContent = 'Send message';
       }
     });
   </script>
