@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,8 +9,15 @@
 <style>
   @font-face {
     font-family: 'Inter';
-    src: local('Inter');
-    font-weight: 400 700;
+    src: url('fonts/inter-400.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Inter';
+    src: url('fonts/inter-700.woff2') format('woff2');
+    font-weight: 700;
+    font-display: swap;
   }
   :root {
     --main: #2563EB;
@@ -63,7 +71,7 @@
   }
   p.positioning {
     font-size: 14px;
-    color: #6B7280;
+    color: #4B5563;
     margin: 0 0 28px 0;
     max-width: 480px;
     line-height: 1.5;
@@ -80,7 +88,11 @@
     color: var(--text);
     background: #fff;
     border: 1px solid #E5E7EB;
-    padding: 9px 18px;
+    padding: 12px 20px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 999px;
     font-size: 14px;
     font-weight: 700;
@@ -92,7 +104,7 @@
   }
   .status {
     font-size: 13px;
-    color: #9CA3AF;
+    color: #4B5563;
     border: 1px solid #E5E7EB;
     padding: 6px 14px;
     border-radius: 999px;
@@ -114,15 +126,15 @@
   }
   .demo p.sub {
     font-size: 13px;
-    color: #6B7280;
+    color: #4B5563;
     margin: 0 0 16px 0;
     text-align: center;
   }
   .demo input, .demo textarea {
     width: 100%;
     font-family: inherit;
-    font-size: 14px;
-    padding: 10px 12px;
+    font-size: 16px;
+    padding: 12px;
     border: 1px solid #E5E7EB;
     border-radius: 8px;
     margin-bottom: 10px;
@@ -134,9 +146,10 @@
     color: #fff;
     border: none;
     font-family: inherit;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 700;
-    padding: 11px;
+    padding: 14px;
+    min-height: 44px;
     border-radius: 8px;
     cursor: pointer;
   }
@@ -217,14 +230,4 @@
     });
   </script>
 </body>
-</html>
- 
-
-
-
-
-
-
-
-
-
+</html
