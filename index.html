@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -169,6 +168,41 @@
   }
   .demo-result.show { display: block; }
   .demo-result.error { background: #FEE2E2; color: #991B1B; }
+  .case {
+    width: 100%;
+    max-width: 480px;
+    background: #fff;
+    border: 1px solid #E5E7EB;
+    border-radius: 16px;
+    padding: 24px;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+  .case h2 {
+    font-size: 16px;
+    margin: 0 0 14px 0;
+    text-align: center;
+  }
+  .case h3 {
+    font-size: 13px;
+    color: var(--main);
+    margin: 14px 0 4px 0;
+  }
+  .case h3:first-of-type { margin-top: 0; }
+  .case p {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: #374151;
+    margin: 0;
+  }
+  .case-note {
+    margin-top: 16px;
+    font-size: 12.5px;
+    color: #6B7280;
+    border-top: 1px solid #F3F4F6;
+    padding-top: 12px;
+    line-height: 1.5;
+  }
 </style>
 </head>
 <body>
@@ -183,7 +217,17 @@
     <a href="mailto:Arshanxshanu@gmail.com">Email</a>
     <a href="https://calendly.com/muhammadarshankhan4/30min" target="_blank" rel="noopener">Book a Call</a>
   </div>
-  <div class="status">Case study &amp; capstone work coming soon</div>
+ 
+  <div class="case">
+    <h2>Case Study: Customer Support Automation Agent</h2>
+    <h3>The Problem</h3>
+    <p>Handling support tickets manually takes a lot of time, especially when the same repetitive questions keep coming back. I wanted an AI agent that could handle the basic, repetitive ones so a support team could spend their time on what actually needs a human.</p>
+    <h3>What I Did</h3>
+    <p>I built the agent in n8n. When a request comes in, it reads the question, checks the available information, and prepares a response. I kept it focused on common questions, and built in one rule: anything urgent or complicated goes to a human instead of letting the AI decide alone &mdash; because AI can misread a situation, and I didn't want automation to create a bigger problem than it solved.</p>
+    <h3>What Came of It</h3>
+    <p>I tested it against real support requests and watched the full workflow run end to end &mdash; a ticket coming in, a decision being made, and a human getting looped in when needed. That's the point it stopped feeling like an experiment and started feeling practical.</p>
+    <div class="case-note">A live, interactive demo of this agent is what I'm building next &mdash; for now, the form below reaches me directly if you'd like to see it run.</div>
+  </div>
  
   <div class="demo">
     <h2>Get in touch</h2>
@@ -230,4 +274,4 @@
     });
   </script>
 </body>
-</html
+</html>
