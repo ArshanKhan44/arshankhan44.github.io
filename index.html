@@ -3,7 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Muhammad Arshan Khan</title>
+<title>Muhammad Arshan Khan &mdash; AI Agent Builder | n8n Automation</title>
+<meta name="description" content="Muhammad Arshan Khan builds AI agents in n8n that automate real business processes and know when to escalate to a human. FlyRank AI Fluency Internship & MTH Fellowship.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Muhammad Arshan Khan &mdash; AI agents that know when to ask for help">
+<meta property="og:description" content="I design and build AI agents in n8n that automate real, working business processes. See my customer support automation case study.">
+<meta property="og:image" content="https://arshankhan44.github.io/og-image.png">
+<meta property="og:url" content="https://arshankhan44.github.io/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Muhammad Arshan Khan &mdash; AI Agent Builder">
+<meta name="twitter:description" content="AI agents that know when to ask for help &mdash; built in n8n, proven on a real customer support case study.">
+<meta name="twitter:image" content="https://arshankhan44.github.io/og-image.png">
 <link rel="icon" type="image/png" href="favicon.png">
 <style>
   @font-face {
@@ -213,11 +223,12 @@
   <div class="links">
     <a href="https://www.linkedin.com/in/muhammad-arshan-khan-155134380" target="_blank" rel="noopener">LinkedIn</a>
     <a href="https://github.com/ArshanKhan44" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://github.com/ArshanKhan44/arshankhan44.github.io" target="_blank" rel="noopener">View Source</a>
     <a href="cv.pdf" target="_blank" rel="noopener">CV</a>
     <a href="mailto:Arshanxshanu@gmail.com">Email</a>
     <a href="https://calendly.com/muhammadarshankhan4/30min" target="_blank" rel="noopener">Book a Call</a>
   </div>
- 
+
   <div class="case">
     <h2>Case Study: Customer Support Automation Agent</h2>
     <h3>The Problem</h3>
@@ -228,29 +239,29 @@
     <p>I tested it against real support requests and watched the full workflow run end to end &mdash; a ticket coming in, a decision being made, and a human getting looped in when needed. That's the point it stopped feeling like an experiment and started feeling practical.</p>
     <div class="case-note">A live, interactive demo of this agent is what I'm building next &mdash; for now, the form below reaches me directly if you'd like to see it run.</div>
   </div>
- 
+
   <div class="demo">
     <h2>Get in touch</h2>
     <p class="sub">Send me a real message &mdash; it goes straight to my inbox.</p>
     <form id="demoForm" action="https://formspree.io/f/mdeopgzv" method="POST">
       <input type="text" name="name" id="demoName" placeholder="Your name" required>
       <input type="email" name="email" id="demoEmail" placeholder="Your email" required>
-      <textarea name="message" id="demoMessage" rows="3" placeholder="What would you like to say?" required></textarea>
+      <textarea name="message" id="demoMessage" rows="3" maxlength="2000" placeholder="What would you like to say?" required></textarea>
       <button type="submit" id="demoBtn">Send message</button>
     </form>
     <div id="demoResult" class="demo-result"></div>
   </div>
- 
+
   <script>
     const form = document.getElementById('demoForm');
     const btn = document.getElementById('demoBtn');
     const result = document.getElementById('demoResult');
- 
+
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
       btn.disabled = true;
       btn.textContent = 'Sending...';
- 
+
       try {
         const res = await fetch(form.action, {
           method: 'POST',
